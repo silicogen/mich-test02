@@ -1,12 +1,16 @@
 
-import { data3 } from "../../data/data3";
+import { useEffect } from "react";
+// import { data3 } from "../../data/data3";
 // import { data32 } from "../../data/data32";
 import { useRoot } from "../../store/Root";
+import { useLoad } from "./handlers"
 
 export const PersonsTable = () => {
     const root = useRoot();;
     const persons = root.persons;
-    persons.setItems(data3);
+    const [axiRes, load] = useLoad();
+    useEffect(load, []);
+    persons.setItems(axiRes.data);
     return <table>
         <thead>
             <tr>
@@ -27,7 +31,5 @@ export const PersonsTable = () => {
                     <td> {r.phone}</td>
                 </tr>)}
         </tbody>
-
-
     </table>
 }
