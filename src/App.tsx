@@ -1,12 +1,10 @@
-import React from 'react';
-import logo from './logo.svg';
 import './App.css';
-
+import { PersonsTable } from "./components/persons/PersonsTable"
 function App() {
   return (
     <div className="App">
       Начальная версия
-
+      <PersonsTable />
     </div>
   );
 }
