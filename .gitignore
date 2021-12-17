@@ -11,13 +11,13 @@
 # production
 /build
 
-# misc
-.DS_Store
-.env.local
-.env.development.local
-.env.test.local
+# misc/home/alex/reps/luxoft/mich-test01/
+.DS_Store/home/alex/reps/luxoft/mich-test01/
+.env.local/home/alex/reps/luxoft/mich-test01//home/alex/reps/luxoft/mich-test01/
+/home/alex/reps/luxoft/mich-test01/.env.test.local/home/alex/reps/luxoft/mich-test01/
 .env.production.local
 
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+/src/data
