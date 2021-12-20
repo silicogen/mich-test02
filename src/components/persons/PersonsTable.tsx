@@ -3,16 +3,15 @@ import { useEffect } from "react";
 import { useRoot } from "../../store/Root";
 import { useLoad } from "./handlers"
 
-
 export const _PersonsTable = () => {
     const root = useRoot();
     const persons = root.persons;
-    const [loadDefault, loadSmall, loadLarge] = useLoad();
-    useEffect(loadDefault as any, []);
+    const load = useLoad();
+    useEffect(() => { load.default(); }, []);
     return <>
-        <button onClick={loadSmall}>Load small</button>
+        <button onClick={load.small}>Load small</button>
 
-        <button onClick={loadLarge}>Load large</button>
+        <button onClick={load.large}>Load large</button>
 
         <table>
             <thead>

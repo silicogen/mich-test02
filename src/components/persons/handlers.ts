@@ -3,8 +3,7 @@ import { useRoot } from "../../store/Root";
 import { getPersonsUrl } from "../../urls";
 
 export const useLoad = () => {
-    const root = useRoot();
-    const persons = root.persons;
+    const persons = useRoot().persons;
     const load = async (personsUrl: string) => {
         try {
             const r = await axios.get(personsUrl);
@@ -13,9 +12,9 @@ export const useLoad = () => {
             console.error("load persons error");
         }
     }
-    const loadDefault = () => load(getPersonsUrl(10));
-    const loadSmall = () => load(getPersonsUrl("small"));
-    const loadLarge = () => load(getPersonsUrl("large"));
-
-    return [loadDefault, loadSmall, loadLarge];
+    return {
+        default: () => load(getPersonsUrl(10)),
+        small: () => load(getPersonsUrl("small")),
+        large: () => load(getPersonsUrl("large"))
+    };
 }
