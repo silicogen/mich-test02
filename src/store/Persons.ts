@@ -1,9 +1,11 @@
 import { types } from "mobx-state-tree";
 import { Address } from "./Address";
+import { v4 as uuidv4 } from 'uuid';
 
 export const Person = types
     .model("Person", {
-        id: types.identifierNumber,
+        ID: types.optional(types.identifier, () => uuidv4()),
+        id: types.number,
         firstName: types.string,
         lastName: types.string,
         email: types.string,

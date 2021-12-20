@@ -30,7 +30,9 @@ export const _PersonsTable = () => {
                 </tr>
             </thead>
             <tbody>{persons.items.map(r =>
-                <tr key={r.id.toString()}>
+                <tr
+                    key={r.ID}
+                >
                     <td> {r.id}</td>
                     <td> {r.firstName}</td>
                     <td> {r.lastName}</td>
