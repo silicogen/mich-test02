@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useState } from "react";
+import { getPersonsUrl } from "../../urls";
 
 export const useLoad = () => {
     const [resp, setState] = useState<any>({});
@@ -11,5 +12,9 @@ export const useLoad = () => {
             console.error("load persons error");
         }
     }
-    return [resp, load];
+    const loadDefault = () => load(getPersonsUrl(10));
+    const loadSmall = () => load(getPersonsUrl("small"));
+    const loadLarge = () => load(getPersonsUrl("large"));
+
+    return [resp, loadDefault, loadSmall, loadLarge];
 }
