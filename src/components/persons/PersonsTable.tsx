@@ -1,14 +1,14 @@
-
+import { observer } from "mobx-react-lite";
 import { useEffect } from "react";
 import { useRoot } from "../../store/Root";
 import { useLoad } from "./handlers"
 
-export const PersonsTable = () => {
+
+export const _PersonsTable = () => {
     const root = useRoot();
     const persons = root.persons;
-    const [resp, loadDefault, loadSmall, loadLarge] = useLoad();
-    useEffect(loadDefault, []);
-    persons.setItems(resp.data);
+    const [loadDefault, loadSmall, loadLarge] = useLoad();
+    useEffect(loadDefault as any, []);
     return <>
         <button onClick={loadSmall}>Load small</button>
 
@@ -46,3 +46,5 @@ export const PersonsTable = () => {
         </table>
     </>
 }
+
+export const PersonsTable = observer(_PersonsTable);
