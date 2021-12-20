@@ -1,23 +1,26 @@
 
 import { useEffect } from "react";
 import { useRoot } from "../../store/Root";
+import { getPersonsUrl } from "../../urls";
 import { useLoad } from "./handlers"
 
 export const PersonsTable = () => {
     const root = useRoot();
     const persons = root.persons;
-    const [axiRes, load] = useLoad();
-    useEffect(() => load(10), []);
-    persons.setItems(axiRes.data);
+    const [resp, load] = useLoad();
+
+    const loadDefault = () => load(getPersonsUrl(10));
+    const loadSmall = () => load(getPersonsUrl("small"));
+    const loadLarge = () => load(getPersonsUrl("large"));
+
+    useEffect(loadDefault, []);
+
+    persons.setItems(resp.data);
     return <>
-        <button
-            onClick={() => load("small")}
-        >Load small
-        </button>
-        <button
-            onClick={() => load("large")}
-        >Load large
-        </button>
+        <button onClick={loadSmall}>Load small</button>
+
+        <button onClick={loadLarge}>Load large</button>
+
         <table>
             <thead>
                 <tr>
