@@ -11,12 +11,12 @@ export const PersonsTable = () => {
     persons.setItems(axiRes.data);
     return <>
         <button
-            onClick={() => load(32)}
-        >Загрузить 32
+            onClick={() => load("small")}
+        >Load small
         </button>
         <button
-            onClick={() => load(1000)}
-        >Загрузить 1000
+            onClick={() => load("large")}
+        >Load large
         </button>
         <table>
             <thead>
