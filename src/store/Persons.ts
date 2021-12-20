@@ -1,4 +1,5 @@
 import { types } from "mobx-state-tree";
+import { Address } from "./Address";
 
 export const Person = types
     .model("Person", {
@@ -7,6 +8,8 @@ export const Person = types
         lastName: types.string,
         email: types.string,
         phone: types.string,
+        address: Address,
+        description: types.string,
     });
 
 export const Persons = types
