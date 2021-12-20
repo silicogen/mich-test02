@@ -9,10 +9,14 @@ export const _PersonsTable = () => {
     const load = useLoad();
     useEffect(() => { load.default(); }, []);
     return <>
+        <br />
         <button onClick={load.small}>Load small</button>
-
         <button onClick={load.large}>Load large</button>
-
+        <br /><br />
+        <button onClick={persons.prev} disabled={persons.prevDisabled}>Prev</button>
+        {persons.bounds}
+        <button onClick={persons.next} disabled={persons.nextDisabled}>Next</button>
+        <br /><br />
         <table>
             <thead>
                 <tr>
@@ -30,7 +34,7 @@ export const _PersonsTable = () => {
             </thead>
             <tbody>{persons.page.map(r =>
                 <tr
-                    key={r.ID}
+                    key={r._id}
                 >
                     <td> {r.id}</td>
                     <td> {r.firstName}</td>

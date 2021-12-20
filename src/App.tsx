@@ -1,4 +1,4 @@
-import './App.css';
+// import './App.css';
 import { PersonsTable } from "./components/persons/PersonsTable"
 function App() {
   return (

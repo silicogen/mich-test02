@@ -2,7 +2,7 @@ import axios from "axios";
 import { useRoot } from "../../store/Root";
 import { getPersonsUrl } from "../../urls";
 
-const defaultRowsCount = 22;
+const defaultRowsCount = 23;
 
 export const useLoad = () => {
     const persons = useRoot().persons;

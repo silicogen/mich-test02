@@ -1,12 +1,12 @@
 import { types } from "mobx-state-tree";
 import { Address } from "./Address";
-import { v4 as uuidv4 } from 'uuid';
 
 const pageRowsCount = 10;
+let _id = 0;
 
 export const Person = types
     .model("Person", {
-        ID: types.optional(types.identifier, () => uuidv4()),
+        _id: types.optional(types.identifierNumber, () => _id++),
         id: types.number,
         firstName: types.string,
         lastName: types.string,
@@ -19,16 +19,34 @@ export const Person = types
 export const Persons = types
     .model("Persons", {
         items: types.array(Person),
+        pageNumber: 1,
         selected: types.safeReference(Person),
     })
     .actions(self => ({
         setItems(arr: any[]) {
             self.items.replace(arr);
         },
+        prev() {
+            self.pageNumber--;
+        },
+        next() {
+            self.pageNumber++;
+        }
     }))
     .views(self => ({
         get page() {
-            return self.items.slice(0, pageRowsCount);
+            return self.items.slice((self.pageNumber - 1) * pageRowsCount, self.pageNumber * pageRowsCount);
+        },
+        get prevDisabled() {
+            return self.pageNumber == 1;
+        },
+        get nextDisabled() {
+            return self.pageNumber * pageRowsCount >= self.items.length;
+        },
+        get bounds() {
+            return `${(self.pageNumber - 1) * pageRowsCount + 1} 
+            to  ${Math.min(self.pageNumber * pageRowsCount, self.items.length)}
+            from ${self.items.length}`;
         }
     }))
 
