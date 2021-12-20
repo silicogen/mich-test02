@@ -45,10 +45,10 @@ export const _PersonsTable = () => {
                     <td> {r.lastName}</td>
                     <td> {r.email}</td>
                     <td> {r.phone}</td>
-                    <td> {r.address.streetAddress}</td>
-                    <td> {r.address.city}</td>
-                    <td> {r.address.state}</td>
-                    <td> {r.address.zip}</td>
+                    <td> {r.streetAddress}</td>
+                    <td> {r.city}</td>
+                    <td> {r.state}</td>
+                    <td> {r.zip}</td>
                     <td> {r.description}</td>
                 </tr>)}
             </tbody>

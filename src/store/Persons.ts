@@ -19,7 +19,21 @@ export const Person = types
         phone: types.string,
         address: Address,
         description: types.string,
-    });
+    })
+    .views(self => ({
+        get streetAddress() {
+            return self.address.streetAddress;
+        },
+        get city() {
+            return self.address.city;
+        },
+        get state() {
+            return self.address.state;
+        },
+        get zip() {
+            return self.address.zip;
+        },
+    }));
 
 export const Persons = types
     .model("Persons", {
