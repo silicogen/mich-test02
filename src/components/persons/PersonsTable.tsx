@@ -17,7 +17,7 @@ export const PersonsTable = () => {
         <table>
             <thead>
                 <tr>
-                    <th> id</th>
+                    <th onClick={() => { }}>id</th>
                     <th>firstName</th>
                     <th>lastName</th>
                     <th>email</th>
@@ -29,8 +29,8 @@ export const PersonsTable = () => {
                     <th>description</th>
                 </tr>
             </thead>
-            <tbody>  {persons.items.map(r =>
-                <tr id={r.id.toString()}>
+            <tbody>{persons.items.map(r =>
+                <tr key={r.id.toString()}>
                     <td> {r.id}</td>
                     <td> {r.firstName}</td>
                     <td> {r.lastName}</td>
