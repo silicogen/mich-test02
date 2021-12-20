@@ -8,6 +8,8 @@ export const _PersonsTable = () => {
     const persons = root.persons;
     const load = useLoad();
     useEffect(() => { load.default(); }, []);
+    const orderClick: React.MouseEventHandler =
+        e => persons.setOrder(e.currentTarget.textContent!);
     return <>
         <br />
         <button onClick={load.small}>Load small</button>
@@ -20,22 +22,24 @@ export const _PersonsTable = () => {
         <table>
             <thead>
                 <tr>
-                    <th onClick={() => { }}>id</th>
-                    <th>firstName</th>
-                    <th>lastName</th>
-                    <th>email</th>
-                    <th>phone</th>
-                    <th>streetAddress</th>
-                    <th>city</th>
-                    <th>state</th>
-                    <th>zip</th>
-                    <th>description</th>
+                    <th >_id</th>
+                    <th onClick={orderClick}>id</th>
+                    <th onClick={orderClick}>firstName</th>
+                    <th onClick={orderClick}>lastName</th>
+                    <th onClick={orderClick}>email</th>
+                    <th onClick={orderClick}>phone</th>
+                    <th onClick={orderClick}>streetAddress</th>
+                    <th onClick={orderClick}>city</th>
+                    <th onClick={orderClick}>state</th>
+                    <th onClick={orderClick}>zip</th>
+                    <th onClick={orderClick}>description</th>
                 </tr>
             </thead>
             <tbody>{persons.page.map(r =>
                 <tr
                     key={r._id}
                 >
+                    <td> {r._id}</td>
                     <td> {r.id}</td>
                     <td> {r.firstName}</td>
                     <td> {r.lastName}</td>
