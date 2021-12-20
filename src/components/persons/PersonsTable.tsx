@@ -28,7 +28,7 @@ export const _PersonsTable = () => {
                     <th>description</th>
                 </tr>
             </thead>
-            <tbody>{persons.items.map(r =>
+            <tbody>{persons.page.map(r =>
                 <tr
                     key={r.ID}
                 >

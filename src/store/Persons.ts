@@ -2,6 +2,8 @@ import { types } from "mobx-state-tree";
 import { Address } from "./Address";
 import { v4 as uuidv4 } from 'uuid';
 
+const pageRowsCount = 10;
+
 export const Person = types
     .model("Person", {
         ID: types.optional(types.identifier, () => uuidv4()),
@@ -23,5 +25,10 @@ export const Persons = types
         setItems(arr: any[]) {
             self.items.replace(arr);
         },
+    }))
+    .views(self => ({
+        get page() {
+            return self.items.slice(0, pageRowsCount);
+        }
     }))
 
