@@ -2,23 +2,23 @@ import { observer } from "mobx-react-lite";
 import { useRoot } from "../../store/Root";
 import { PersonsTH } from "./PersonsTH";
 
-const _PersonsTable = () => {
+const _PersonsTable: React.FC = () => {
     const persons = useRoot().persons;
     return <>
         <table>
             <thead>
                 <tr>
                     {/* <th >_id</th> */}
-                    <PersonsTH column="id" />
-                    <PersonsTH column="firstName" />
-                    <PersonsTH column="lastName" />
-                    <PersonsTH column="email" />
-                    <PersonsTH column="phone" />
-                    <PersonsTH column="streetAddress" />
-                    <PersonsTH column="city" />
-                    <PersonsTH column="state" />
-                    <PersonsTH column="zip" />
-                    <PersonsTH column="description" />
+                    <PersonsTH columnName="id" />
+                    <PersonsTH columnName="firstName" />
+                    <PersonsTH columnName="lastName" />
+                    <PersonsTH columnName="email" />
+                    <PersonsTH columnName="phone" />
+                    <PersonsTH columnName="streetAddress" />
+                    <PersonsTH columnName="city" />
+                    <PersonsTH columnName="state" />
+                    <PersonsTH columnName="zip" />
+                    <PersonsTH columnName="description" />
                 </tr>
             </thead>
             <tbody>{persons.page.map(r =>

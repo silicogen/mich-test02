@@ -4,7 +4,7 @@ import { PersonsNav } from "./PersonsNav";
 import { PersonsLoad } from "./PersonsLoad";
 import { PersonsTable } from "./PersonsTable";
 
-const _Persons = () => {
+const _Persons: React.FC = () => {
     return <>
         <br />
         <PersonsLoad />

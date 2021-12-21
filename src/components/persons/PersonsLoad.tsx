@@ -2,7 +2,7 @@ import { observer } from "mobx-react-lite";
 import { useEffect } from "react";
 import { useLoad } from "./handlers";
 
-const _PersonsLoad = () => {
+const _PersonsLoad: React.FC = () => {
     const load = useLoad();
     useEffect(() => { load.default(); }, []);
     return <>
