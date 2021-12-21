@@ -3,8 +3,9 @@ import { useEffect } from "react";
 import { useRoot } from "../../store/Root";
 import { useLoad } from "./handlers";
 import { PersonsTH } from "./PersonsTH";
+import { PersonsFilter } from "./PersonsFilter";
 
-export const _PersonsTable = () => {
+const _PersonsTable = () => {
     const root = useRoot();
     const persons = root.persons;
     const load = useLoad();
@@ -18,6 +19,7 @@ export const _PersonsTable = () => {
         {persons.bounds}
         <button onClick={persons.next} disabled={persons.nextDisabled}>Next</button>
         <br /><br />
+        <PersonsFilter />
         <table>
             <thead>
                 <tr>
