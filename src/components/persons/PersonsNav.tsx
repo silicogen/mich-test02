@@ -1,7 +1,6 @@
 import { observer } from "mobx-react-lite";
 import { useRoot } from "../../store/Root";
 
-
 const _PersonsNav: React.FC = () => {
     const persons = useRoot().persons;
     return <>

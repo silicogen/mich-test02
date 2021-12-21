@@ -1,5 +1,5 @@
 // import './App.css';
-import { Persons } from "./components/persons/Persons"
+import { Persons } from "./components/persons"
 function App() {
   return (
     <div className="App">
