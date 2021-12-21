@@ -22,7 +22,11 @@ const _PersonsTable: React.FC = () => {
                 </tr>
             </thead>
             <tbody>{persons.page.map(r =>
-                <tr key={r._id}>
+                <tr
+                    key={r._id}
+                    onClick={() => persons.toggleSelect(r)}
+                    style={persons.isSelected(r) ? { background: "lightgray" } : {}}
+                >
                     {/* <td> {r._id}</td> */}
                     <td> {r.id}</td>
                     <td> {r.firstName}</td>

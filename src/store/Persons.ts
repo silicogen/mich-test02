@@ -1,4 +1,4 @@
-import { types } from "mobx-state-tree";
+import { Instance, types } from "mobx-state-tree";
 import { Address } from "./Address";
 
 const pageRowsCount = 10;
@@ -79,6 +79,9 @@ export const Persons = types
                     self.items.sort((a, b) => a._id - b._id);
                     self.order = "source";
             }
+        },
+        toggleSelect(item: Instance<typeof Person>) {
+            self.selected = self.selected === item ? undefined : item;
         }
     }))
     .views(self => ({
@@ -121,6 +124,9 @@ export const Persons = types
             } else {
                 return "";
             }
-        }
+        },
+        isSelected(item: Instance<typeof Person>) {
+            return self.selected === item;
+        },
     }))
 
