@@ -98,10 +98,12 @@ export const Persons = types
             return self.pageNumber === 1;
         },
         get nextDisabled() {
-            return self.pageNumber * pageRowsCount >= self.items.length;
+            return self.pageNumber * pageRowsCount >= this.filteredItems.length;
         },
         get bounds() {
             const length = this.filteredItems.length;
+            if (length === 0)
+                return "not found"
             return `${(self.pageNumber - 1) * pageRowsCount + 1} 
             to  ${Math.min(self.pageNumber * pageRowsCount, length)}
             from ${length}`;

@@ -1,9 +1,9 @@
 // import './App.css';
-import { PersonsTable } from "./components/persons/PersonsTable"
+import { Persons } from "./components/persons/Persons"
 function App() {
   return (
     <div className="App">
-      <PersonsTable />
+      <Persons />
     </div>
   );
 }

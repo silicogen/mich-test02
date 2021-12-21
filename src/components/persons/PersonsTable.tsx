@@ -1,25 +1,10 @@
 import { observer } from "mobx-react-lite";
-import { useEffect } from "react";
 import { useRoot } from "../../store/Root";
-import { useLoad } from "./handlers";
 import { PersonsTH } from "./PersonsTH";
-import { PersonsFilter } from "./PersonsFilter";
 
 const _PersonsTable = () => {
-    const root = useRoot();
-    const persons = root.persons;
-    const load = useLoad();
-    useEffect(() => { load.default(); }, []);
+    const persons = useRoot().persons;
     return <>
-        <br />
-        <button onClick={load.small}>Load small</button>
-        <button onClick={load.large}>Load large</button>
-        <br /><br />
-        <button onClick={persons.prev} disabled={persons.prevDisabled}>Prev</button>
-        {persons.bounds}
-        <button onClick={persons.next} disabled={persons.nextDisabled}>Next</button>
-        <br /><br />
-        <PersonsFilter />
         <table>
             <thead>
                 <tr>
