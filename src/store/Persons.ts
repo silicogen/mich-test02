@@ -4,11 +4,6 @@ import { Address } from "./Address";
 const pageRowsCount = 10;
 let _id = 0;
 
-type Order =
-    "source" |
-    "ascending" |
-    "descending";
-
 export const Person = types
     .model("Person", {
         _id: types.optional(types.identifierNumber, () => _id++),
@@ -56,13 +51,13 @@ export const Persons = types
             self.pageNumber++;
         },
         setOrder(column: string = "_id") {
-            if (column != self.orderColumn) {
+            if (column !== self.orderColumn) {
                 self.orderColumn = column;
                 self.order = "source";
             }
             self.pageNumber = 1;
 
-            const compare = column == "id"
+            const compare = column === "id"
                 ? (a: any, b: any) => a[column] - b[column]
                 : (a: any, b: any) => a[column].localeCompare(b[column]);
 
@@ -87,7 +82,7 @@ export const Persons = types
             return self.items.slice((self.pageNumber - 1) * pageRowsCount, self.pageNumber * pageRowsCount);
         },
         get prevDisabled() {
-            return self.pageNumber == 1;
+            return self.pageNumber === 1;
         },
         get nextDisabled() {
             return self.pageNumber * pageRowsCount >= self.items.length;
@@ -98,7 +93,7 @@ export const Persons = types
             from ${self.items.length}`;
         },
         orderSimbol(column: string) {
-            if (column == self.orderColumn) {
+            if (column === self.orderColumn) {
                 switch (self.order) {
                     case "descending":
                         return "↑";
