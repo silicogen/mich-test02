@@ -7,7 +7,7 @@ interface Props {
     children?: React.ReactNode;
 }
 
-export const _PersonsTH: React.FC<Props> = ({ column, children }) => {
+const _PersonsTH: React.FC<Props> = ({ column, children }) => {
     const persons = useRoot().persons;
     const orderClick: React.MouseEventHandler = e => persons.setOrder(column)
     return <th onClick={orderClick} >{children ?? column}{persons.orderSimbol(column)}</th>
