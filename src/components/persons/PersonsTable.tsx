@@ -9,7 +9,9 @@ export const _PersonsTable = () => {
     const load = useLoad();
     useEffect(() => { load.default(); }, []);
     const orderClick: React.MouseEventHandler =
-        e => persons.setOrder(e.currentTarget.textContent!);
+        e => {
+            persons.setOrder(e.currentTarget.id!);
+        }
     return <>
         <br />
         <button onClick={load.small}>Load small</button>
@@ -23,16 +25,16 @@ export const _PersonsTable = () => {
             <thead>
                 <tr>
                     <th >_id</th>
-                    <th onClick={orderClick}>id</th>
-                    <th onClick={orderClick}>firstName</th>
-                    <th onClick={orderClick}>lastName</th>
-                    <th onClick={orderClick}>email</th>
-                    <th onClick={orderClick}>phone</th>
-                    <th onClick={orderClick}>streetAddress</th>
-                    <th onClick={orderClick}>city</th>
-                    <th onClick={orderClick}>state</th>
-                    <th onClick={orderClick}>zip</th>
-                    <th onClick={orderClick}>description</th>
+                    <th onClick={orderClick} id="id">id{persons.orderSimbol("id")}</th>
+                    <th onClick={orderClick} id="firstName">firstName{persons.orderSimbol("firstName")}</th>
+                    <th onClick={orderClick} id="lastName">lastName{persons.orderSimbol("lastName")}</th>
+                    <th onClick={orderClick} id="email">email{persons.orderSimbol("email")}</th>
+                    <th onClick={orderClick} id="phone">phone{persons.orderSimbol("phone")}</th>
+                    <th onClick={orderClick} id="streetAddress">streetAddress{persons.orderSimbol("streetAddress")}</th>
+                    <th onClick={orderClick} id="city">city{persons.orderSimbol("city")}</th>
+                    <th onClick={orderClick} id="state">state{persons.orderSimbol("state")}</th>
+                    <th onClick={orderClick} id="zip">zip{persons.orderSimbol("zip")}</th>
+                    <th onClick={orderClick} id="description">description{persons.orderSimbol("description")}</th>
                 </tr>
             </thead>
             <tbody>{persons.page.map(r =>

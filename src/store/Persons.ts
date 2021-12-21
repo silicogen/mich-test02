@@ -79,9 +79,7 @@ export const Persons = types
         }
     }))
     .views(self => ({
-        get ordered() {
-            return self.items.sort((a, b) => a.firstName.localeCompare(b.firstName));
-        },
+
         get page() {
             return self.items.slice((self.pageNumber - 1) * pageRowsCount, self.pageNumber * pageRowsCount);
         },
@@ -96,5 +94,19 @@ export const Persons = types
             to  ${Math.min(self.pageNumber * pageRowsCount, self.items.length)}
             from ${self.items.length}`;
         },
+        orderSimbol(column: string) {
+            if (column == self.orderColumn) {
+                switch (self.order) {
+                    case "descending":
+                        return "↑";
+                    case "ascending":
+                        return "↓";
+                    default:
+                        return "";
+                }
+            } else {
+                return "";
+            }
+        }
     }))
 
