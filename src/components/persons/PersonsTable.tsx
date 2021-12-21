@@ -1,17 +1,14 @@
 import { observer } from "mobx-react-lite";
 import { useEffect } from "react";
 import { useRoot } from "../../store/Root";
-import { useLoad } from "./handlers"
+import { useLoad } from "./handlers";
+import { PersonsTH } from "./PersonsTH";
 
 export const _PersonsTable = () => {
     const root = useRoot();
     const persons = root.persons;
     const load = useLoad();
     useEffect(() => { load.default(); }, []);
-    const orderClick: React.MouseEventHandler =
-        e => {
-            persons.setOrder(e.currentTarget.id!);
-        }
     return <>
         <br />
         <button onClick={load.small}>Load small</button>
@@ -24,24 +21,22 @@ export const _PersonsTable = () => {
         <table>
             <thead>
                 <tr>
-                    <th >_id</th>
-                    <th onClick={orderClick} id="id">id{persons.orderSimbol("id")}</th>
-                    <th onClick={orderClick} id="firstName">firstName{persons.orderSimbol("firstName")}</th>
-                    <th onClick={orderClick} id="lastName">lastName{persons.orderSimbol("lastName")}</th>
-                    <th onClick={orderClick} id="email">email{persons.orderSimbol("email")}</th>
-                    <th onClick={orderClick} id="phone">phone{persons.orderSimbol("phone")}</th>
-                    <th onClick={orderClick} id="streetAddress">streetAddress{persons.orderSimbol("streetAddress")}</th>
-                    <th onClick={orderClick} id="city">city{persons.orderSimbol("city")}</th>
-                    <th onClick={orderClick} id="state">state{persons.orderSimbol("state")}</th>
-                    <th onClick={orderClick} id="zip">zip{persons.orderSimbol("zip")}</th>
-                    <th onClick={orderClick} id="description">description{persons.orderSimbol("description")}</th>
+                    {/* <th >_id</th> */}
+                    <PersonsTH column="id" />
+                    <PersonsTH column="firstName" />
+                    <PersonsTH column="lastName" />
+                    <PersonsTH column="email" />
+                    <PersonsTH column="phone" />
+                    <PersonsTH column="streetAddress" />
+                    <PersonsTH column="city" />
+                    <PersonsTH column="state" />
+                    <PersonsTH column="zip" />
+                    <PersonsTH column="description" />
                 </tr>
             </thead>
             <tbody>{persons.page.map(r =>
-                <tr
-                    key={r._id}
-                >
-                    <td> {r._id}</td>
+                <tr key={r._id}>
+                    {/* <td> {r._id}</td> */}
                     <td> {r.id}</td>
                     <td> {r.firstName}</td>
                     <td> {r.lastName}</td>
