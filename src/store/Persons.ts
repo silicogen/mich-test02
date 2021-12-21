@@ -61,15 +61,18 @@ export const Persons = types
                 self.order = "source";
             }
             self.pageNumber = 1;
+
+            const compare = column == "id"
+                ? (a: any, b: any) => a[column] - b[column]
+                : (a: any, b: any) => a[column].localeCompare(b[column]);
+
             switch (self.order) {
                 case "source":
-                    //@ts-ignore
-                    self.items.sort((a, b) => a[column].localeCompare(b[column]));
+                    self.items.sort(compare);
                     self.order = "ascending";
                     break;
                 case "ascending":
-                    //@ts-ignore
-                    self.items.sort((a, b) => -a[column].localeCompare(b[column]));
+                    self.items.sort((a, b) => -compare(a, b));
                     self.order = "descending";
                     break;
                 default:
