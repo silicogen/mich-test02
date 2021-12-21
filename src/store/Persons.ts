@@ -3,6 +3,7 @@ import { Address } from "./Address";
 
 const pageRowsCount = 10;
 let _id = 0;
+const columns = ["id", "firstName", "lastName", "email", "phone", "address", "streetAddress", "city", "state", "zip", "description"];
 
 export const Person = types
     .model("Person", {
@@ -39,10 +40,14 @@ export const Persons = types
             "source"),
         orderColumn: "_id",
         selected: types.safeReference(Person),
+        filter: ""
     })
     .actions(self => ({
         setItems(arr: any[]) {
             self.items.replace(arr);
+        },
+        setFilter(filter: string) {
+            self.filter = filter;
         },
         prev() {
             self.pageNumber--;
@@ -77,9 +82,17 @@ export const Persons = types
         }
     }))
     .views(self => ({
-
+        get filteredItems() {
+            return self.filter === ""
+                ? self.items
+                : self.items.filter(i =>
+                    //@ts-ignore
+                    columns.filter(c => i[c]
+                        .toString()
+                        .includes(self.filter)).length > 0);
+        },
         get page() {
-            return self.items.slice((self.pageNumber - 1) * pageRowsCount, self.pageNumber * pageRowsCount);
+            return this.filteredItems.slice((self.pageNumber - 1) * pageRowsCount, self.pageNumber * pageRowsCount);
         },
         get prevDisabled() {
             return self.pageNumber === 1;
@@ -88,9 +101,10 @@ export const Persons = types
             return self.pageNumber * pageRowsCount >= self.items.length;
         },
         get bounds() {
+            const length = this.filteredItems.length;
             return `${(self.pageNumber - 1) * pageRowsCount + 1} 
-            to  ${Math.min(self.pageNumber * pageRowsCount, self.items.length)}
-            from ${self.items.length}`;
+            to  ${Math.min(self.pageNumber * pageRowsCount, length)}
+            from ${length}`;
         },
         orderSimbol(column: string) {
             if (column === self.orderColumn) {
