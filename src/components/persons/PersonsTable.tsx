@@ -5,7 +5,12 @@ import { PersonsTH } from "./PersonsTH";
 const _PersonsTable: React.FC = () => {
     const persons = useRoot().persons;
     return <>
-        <table>
+        <table
+            style={{
+                whiteSpace: "nowrap",
+                textAlign: "left"
+            }}
+        >
             <thead>
                 <tr>
                     {/* <th >_id</th> */}
